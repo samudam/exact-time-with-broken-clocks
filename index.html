@@ -1,0 +1,66 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Une horloge cassée</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        #clock-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 50px;
+        }
+        #clock-image {
+            width: 300px;
+            height: 300px;
+            margin-top: 20px;
+            border: 5px solid #444;
+            border-radius: 50%;
+            background-color: white;
+        }
+        .time-display {
+            font-size: 24px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="clock-container">
+        <h1>Une horloge cassée donne l'heure exacte deux fois par jour</h1>
+        <div class="time-display" id="current-time"></div>
+        <img id="clock-image" src="" alt="Horloge cassée">
+    </div>
+
+    <script>
+        function updateClock() {
+            const now = new Date();
+            const hours = now.getHours().toString().padStart(2, '0');
+            const minutes = now.getMinutes().toString().padStart(2, '0');
+            const currentTime = `${hours}:${minutes}`;
+            
+            // Afficher l'heure actuelle
+            document.getElementById('current-time').innerText = `Heure actuelle à Paris : ${currentTime}`;
+            
+            // Charger l'image correspondante
+            const imagePath = `images/broken_clock_${hours}_${minutes}.png`; // Modifier le chemin si nécessaire
+            const clockImage = document.getElementById('clock-image');
+            clockImage.src = imagePath;
+            clockImage.alt = `Horloge cassée affichant ${currentTime}`;
+        }
+
+        // Mettre à jour l'horloge toutes les minutes
+        updateClock();
+        setInterval(updateClock, 60000);
+    </script>
+</body>
+</html>
